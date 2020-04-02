@@ -13,71 +13,80 @@
 
 <body>
 
-   <section>
-      <div class="container">
-         <div class="cart">
-            <div class="col-md-12 col-lg-10 mx-auto">
-               <div class="cart-item">
-                  <div class="row">
-                     <div class="col-md-7 center-item">
-                        <img src="images/product-1.png" alt="">
-                        <h5>iPhone 11 128GB Black</h5>
-                     </div>
 
-                     <div class="col-md-5 center-item">
-                        <div class="input-group number-spinner">
-                           <button id="phoneMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="currentPhoneValue" type="text" class="form-control text-center" value="1">
-                           <button id="phonePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                        </div>
-                        <h5>$ <span id="phonePrice">1219</span> </h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+   <div class="container " id="sec" >
+      <div class="cart">
+         <div class="col-md-12 col-lg-10 mx-auto">
+            <div class="cart-item">
+               <div class="row">
+                  <div class="col-md-7 center-item">
+                     <img src="images/product-1.png" alt="">
+                     <h5>iPhone 11 128GB Black</h5>
+                  </div>
+
+                  <div class="col-md-5 center-item">
+                     <div class="input-group number-spinner">
+                        <button id="phoneMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                        <input id="currentPhoneValue" type="text" class="form-control text-center" value="1">
+                        <button id="phonePlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                      </div>
+                     <h5>$ <span id="phonePrice">1219</span> </h5>
+                     <img src="images/remove.png" alt="" class="remove-item">
                   </div>
                </div>
+            </div>
 
-               <div class="cart-item">
-                  <div class="row">
-                     <div class="col-md-7 center-item mx-auto">
-                        <img src="images/product-2.png" alt="">
-                        <h5>iPhone 11 Silicone Case - Black</h5>
-                     </div>
-                     <div class="col-md-5 center-item">
-                        <div class="input-group number-spinner">
-                           <button id="coverMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="currentCoverValue" type="text" class="form-control text-center" value="1">
-                           <button id="coverPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+            <div class="cart-item">
+               <div class="row">
+                  <div class="col-md-7 center-item mx-auto">
+                     <img src="images/product-2.png" alt="">
+                     <h5>iPhone 11 Silicone Case - Black</h5>
+                  </div>
+                  <div class="col-md-5 center-item">
+                     <div class="input-group number-spinner">
+                        <button id="coverMinusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                        <input id="currentCoverValue" type="text" class="form-control text-center" value="1">
+                        <button id="coverPlusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
-                        </div>
-                        <h5>$ <span id="coverPrice">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
                      </div>
+                     <h5>$ <span id="coverPrice">59</span></h5>
+                     <img src="images/remove.png" alt="" class="remove-item">
                   </div>
                </div>
+            </div>
 
-               <div class="cart-item">
-                  <div class="row">
+            <div class="cart-item">
+               <div class="row">
 
-                     <div class="col-md-8">
-                        <h5>Subtotal: </h5>
-                        <h5>Tax:</h5>
-                        <h5>Total:</h5>
-                     </div>
+                  <div class="col-md-8">
+                     <h5>Subtotal: </h5>
+                     <h5>Tax:</h5>
+                     <h5>Total:</h5>
+                  </div>
 
-                     <div class="col-md-4 status">
-                        <h5>$ <span id="subTotal">1278</span> </h5>
-                        <h5>$0</h5>
-                        <h5>$ <span id="total">1278</span> </h5>
-                     </div>
+                  <div class="col-md-4 status">
+                     <h5>$ <span id="subTotal">1278</span> </h5>
+                     <h5>$0</h5>
+                     <h5>$ <span id="total">1278</span> </h5>
                   </div>
                </div>
-               <div class="col-md-12 pt-4 pb-4">
-                  <button id="submitBtn" type="button" class="btn btn-success check-out">Check Out</button>
-               </div>
+            </div>
+            <div class="col-md-12 pt-4 pb-4">
+               <button id="submitBtn" type="button" class="btn btn-success check-out">Check Out</button>
             </div>
          </div>
       </div>
-   </section>
+   </div>
+
+
+   <div class="success container" id="next">
+      <div class="card">
+         <h1 class="title">
+            Congratulations !!! <br> Your order has been placed.
+         </h1>
+         <button id="backbtn" class="btn btn-success"> Back</button>
+      </div>
+   </div>
    <script>
 
       function increment(inputID, displayID, price) {
@@ -86,6 +95,14 @@
          const currentValue = document.getElementById(inputID).value;
          const phoneValue = parseFloat(currentValue);
          document.getElementById(displayID).innerText = price * phoneValue;
+
+         const phone = document.getElementById("phonePrice").innerText;
+         const phoneVal = parseFloat(phone);
+         const cover = document.getElementById("coverPrice").innerText;
+         const coverVal = parseFloat(cover);
+         const final = phoneVal + coverVal;
+         document.getElementById("subTotal").innerText = final;
+         document.getElementById("total").innerText = final;
       }
       function decrement(inputID, displayID, price) {
          if (document.getElementById(inputID).value > 0) {
@@ -93,8 +110,16 @@
             const currentValue = document.getElementById(inputID).value;
             const phoneValue = parseFloat(currentValue);
             document.getElementById(displayID).innerText = price * phoneValue;
+
+            const phone = document.getElementById("phonePrice").innerText;
+            const phoneVal = parseFloat(phone);
+            const cover = document.getElementById("coverPrice").innerText;
+            const coverVal = parseFloat(cover);
+            const final = phoneVal + coverVal;
+            document.getElementById("subTotal").innerText = final;
+            document.getElementById("total").innerText = final;
          }
-         else{
+         else {
             alert("Can not be negative");
          }
 
@@ -130,13 +155,16 @@
 
       //submitBtn
       document.getElementById("submitBtn").addEventListener("click", function () {
-         const phone = document.getElementById("phonePrice").innerText;
-         const phoneVal = parseFloat(phone);
-         const cover = document.getElementById("coverPrice").innerText;
-         const coverVal = parseFloat(cover);
-         const final = phoneVal + coverVal;
-         document.getElementById("subTotal").innerText = final;
-         document.getElementById("total").innerText = final;
+         document.getElementById("sec").style.display = "none";
+         document.getElementById("next").style.display = "inline";
+
+      })
+
+      //backBtn
+      document.getElementById("backbtn").addEventListener("click", function () {
+         document.getElementById("sec").style.display = "inline";
+         document.getElementById("next").style.display = "none";
+
       })
    </script>
 </body>
